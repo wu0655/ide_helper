@@ -1,0 +1,32 @@
+{
+    "env": {
+        "myDefaultIncludePath": [
+            "${workspaceFolder}",
+            "${workspaceFolder}/out/include"
+        ],
+        "myCompilerPath": "/data/work/nxp/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-gcc"
+    },
+    "configurations": [
+        {
+            "name": "Linux",
+            "intelliSenseMode": "linux-gcc-arm64",
+            "compileCommands": "${workspaceFolder}/compile_commands.json",
+            "compilerPath": "${myCompilerPath}",
+            "browse": {
+                "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "${myDefaultIncludePath}"
+                ]
+            },
+            "dotConfig": "${workspaceFolder}/out/.config",
+            "forcedInclude": [
+                "${workspaceFolder}/out/include/generated/autoconf.h"
+            ],
+            "includePath": [
+                "${workspaceFolder}/**"
+            ]
+        }
+    ],
+    "version": 4
+}

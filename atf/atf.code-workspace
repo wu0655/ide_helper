@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "atf"
+		}
+	],
+	"settings": {
+		"C_Cpp.default.includePath": [
+			"${workspaceFolder}/**",
+		],
+		"C_Cpp.default.forcedInclude": [
+			"${workspaceFolder}/plat/nxp/s32/s32g/s32g2/**/*.h"
+		],
+		"C_Cpp.default.defines": [
+			"__KERNEL__"
+		],
+		"C_Cpp.default.browse.path": ["${workspaceFolder}/**"],
+		"C_Cpp.default.browse.limitSymbolsToIncludedHeaders": true,
+		"C_Cpp.default.browse.databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+		"C_Cpp.default.compilerPath": "/data/work/nxp/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-gcc"
+	}
+}

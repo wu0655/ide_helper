@@ -1,0 +1,12 @@
+.hirain-s32g274a-fawcgw.dtb.pre.o: \
+ arch/arm/dts/.hirain-s32g274a-fawcgw.dtb.pre.tmp \
+ ../include/linux/kconfig.h include/generated/autoconf.h \
+ ../arch/arm/dts/hirain-s32g274a.dtsi ../arch/arm/dts/fsl-s32g.dtsi \
+ ../arch/arm/dts/include/dt-bindings/clock/s32g-scmi-clock.h \
+ ../arch/arm/dts/include/dt-bindings/clock/s32gen1-scmi-clock.h \
+ ../arch/arm/dts/include/dt-bindings/pinctrl/s32g-pinctrl.h \
+ ../arch/arm/dts/include/dt-bindings/pinctrl/s32-gen1-pinctrl.h \
+ ../arch/arm/dts/fsl-s32-gen1.dtsi \
+ ../arch/arm/dts/include/dt-bindings/interrupt-controller/irq.h \
+ ../arch/arm/dts/fsl-s32gxxxaevb.dtsi \
+ ../arch/arm/dts/include/dt-bindings/gpio/gpio.h

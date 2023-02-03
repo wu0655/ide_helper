@@ -1,0 +1,22 @@
+batman-v1-0.o: ../arch/arm64/boot/dts/freescale/batman-v1-0.dts \
+ ../arch/arm64/boot/dts/freescale/fsl-s32g274a.dtsi \
+ ../arch/arm64/boot/dts/freescale/fsl-s32g.dtsi \
+ ../arch/arm64/boot/dts/freescale/fsl-s32-gen1.dtsi \
+ ../scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/clock/s32gen1-clock.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/clock/s32gen1-scmi-clock.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/misc/s32-fccu.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/nvmem/s32-siul2-nvmem.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/phy/phy-s32gen1-serdes.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/phy/phy.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/reset/s32gen1-scmi-reset.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/mailbox/nxp-llce-mb.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/pinctrl/s32g-pinctrl.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/pinctrl/s32-gen1-pinctrl.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/clock/s32g-scmi-clock.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/reset/s32g-scmi-reset.h \
+ ../scripts/dtc/include-prefixes/dt-bindings/net/fsl-s32g-pfeng.h \
+ ../arch/arm64/boot/dts/freescale/fsl-s32gxxxa-evb.dtsi \
+ ../scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ ../arch/arm64/boot/dts/freescale/batman-common.dtsi

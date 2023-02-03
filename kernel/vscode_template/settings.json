@@ -1,0 +1,20 @@
+{
+    "files.exclude": {
+        "**/.*.*.cmd": true,
+        "**/.*.d": true,
+        "**/.*.S": true
+    },
+    "[c]": {
+        "editor.detectIndentation": false,
+        "editor.tabSize": 8,
+        "editor.insertSpaces": false,
+        "editor.rulers": [80,100]
+    },
+    "files.associations": {
+        "*.h": "c"
+    },
+    "bitbake.loggingLevel": "debug",
+    "C_Cpp.loggingLevel": "Debug",
+    "C_Cpp.default.configurationProvider": "",
+    "C_Cpp.exclusionPolicy": "checkFilesAndFolders"
+}
