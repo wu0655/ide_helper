@@ -77,7 +77,10 @@ def gen_compile_commands(cmd_file_search_path, out_dir):
     print(file=sys.stderr)
     print("Writing compile_commands.json...", file=sys.stderr)
 
-    with open('compile_commands.json', 'w') as compdb_file:
+    cmd_json_dir = out_dir + "/source/"
+    if not os.path.exists(cmd_json_dir):
+        cmd_json_dir = "./"
+    with open(os.path.join(cmd_json_dir, 'compile_commands.json'), 'w') as compdb_file:
         json.dump(compdb, compdb_file, indent=1)
 
 

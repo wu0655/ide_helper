@@ -5,10 +5,12 @@ import sys
 
 class AtfVscodeCppPluginConfigGenerator(object):
     make_log = ""
+    code_dir = ""
     define_list = []
 
-    def __init__(self, log):
+    def __init__(self, path, log):
         self.make_log = log
+        self.code_dir = path
 
     def init(self):
         if os.path.isfile(self.make_log):
@@ -40,13 +42,16 @@ class AtfVscodeCppPluginConfigGenerator(object):
             self.define_list.append(item)
 
     def output(self):
-        path = "./vscode_template/c_cpp_properties.json"
+        path = os.path.join(self.code_dir, 'vscode')
+        if not os.path.exists(path):
+            os.mkdir(path)
+        path = self.code_dir + "./vscode/c_cpp_properties.json"
         if os.path.exists(path):
             with open(path, "r") as jsonFile:
                 config_content = json.load(jsonFile)
 
         config_content['configurations'][0]['defines'] = self.define_list
-        with open("c_cpp_properties.json", 'w') as f:
+        with open(path, 'w') as f:
             json.dump(config_content, f, indent=4)
 
 

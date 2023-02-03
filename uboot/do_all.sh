@@ -16,8 +16,3 @@ PYTHONPATH=${PWD}/.. python3 ../common/ShellScriptGenerator.py $1 ${__proj_dir} 
 # generate vscode workspace
 PYTHONPATH=${PWD}/.. python3 ../common/generate_compdb.py  -O $1
 PYTHONPATH=${PWD}/.. python3 ../common/VscodeConfigGenerator.py $1 ${__file_list}
-cp -fv compile_commands.json $1/source/
-mkdir -p  $1/source/.vscode
-cp -fv vscode_template/* $1/source/.vscode/
-cp -fv ../common/generate_compdb.py $1/source/.vscode/
-cp -fv settings.json $1/source/.vscode/settings.json

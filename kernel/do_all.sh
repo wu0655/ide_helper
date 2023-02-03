@@ -21,9 +21,3 @@ PYTHONPATH=${PWD}/.. python3 KernelOutDirAnalyzer.py $1 ${__file_list}
 PYTHONPATH=${PWD}/.. python3 ../common/generate_compdb.py  -O $1
 # generate settings.json
 PYTHONPATH=${PWD}/.. python3 ../common/VscodeConfigGenerator.py $1 ${__file_list}
-# copy to kernel_code_path/.vscode
-cp -fv compile_commands.json $1/source/
-mkdir -p  $1/source/.vscode
-cp -fv vscode_template/* $1/source/.vscode/
-cp -fv ../common/generate_compdb.py $1/source/.vscode/
-cp -fv settings.json $1/source/.vscode/settings.json

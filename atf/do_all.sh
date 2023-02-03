@@ -17,11 +17,7 @@ PYTHONPATH=${PWD}/.. python3 AtfShellScriptGenerator.py $1 $2 ${__proj_dir} ${__
 
 # generate vscode workspace
 PYTHONPATH=${PWD}/.. python3 ../common/VscodeConfigGenerator.py $1 $2 ${__file_list}
-mkdir -p ${__code_dir}/.vscode
-cp -fv vscode_template/* ${__code_dir}/.vscode/
-cp -fv settings.json ${__code_dir}/.vscode/
 
 if [ -f "$4" ]; then
-	PYTHONPATH=${PWD}/.. python3 AtfVscodeCppPluginConfigGenerator.py $4
-	cp -fv c_cpp_properties.json ${__code_dir}/.vscode/
+	PYTHONPATH=${PWD}/.. python3 AtfVscodeCppPluginConfigGenerator.py $2 $4
 fi

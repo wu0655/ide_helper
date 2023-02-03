@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import json
 import os
+import shutil
 import sys
 from collections import OrderedDict
 
@@ -25,7 +26,7 @@ class VscodeConfigGenerator(object):
                 elif path.startswith(self.code_dir):
                     self.handle_one_src_file(path)
                     self.code_file_set.add(path)
-
+        self.create_vscode_workspace()
         self.scan_dir(self.code_dir)
         self.exclude_file()
 
@@ -59,15 +60,36 @@ class VscodeConfigGenerator(object):
                 else:
                     self.scan_dir(path)
 
+    def create_vscode_workspace(self):
+        path = os.path.join(self.code_dir, '.vscode')
+        if not os.path.exists(path):
+            os.mkdir(path)
+        elif os.path.isdir(path):
+            pass
+        else:
+            os.remove(path)
+            os.mkdir(path)
+
+        fn_list = ['settings.json', 'c_cpp_properties.json', 'tasks.json']
+        for fn in fn_list:
+            if not os.path.exists(os.path.join(path, fn)):
+                shutil.copy(os.path.join('./vscode_template', fn), os.path.join(path, fn))
+        fn = 'generate_compdb.py'
+        if not os.path.exists(os.path.join(path, fn)):
+            shutil.copy(os.path.join('../common', fn), os.path.join(path, fn))
+
     def output(self):
-        path = "./vscode_template/settings.json"
+        path = os.path.join(self.code_dir + '.vscode/settings.json')
+        if not os.path.isfile(path):
+            path = "./vscode_template/settings.json"
+
         if os.path.exists(path):
             with open(path, "r") as jsonFile:
                 settings = json.load(jsonFile)
                 settings["files.exclude"] = OrderedDict(sorted(self.dir_exclude_dict.items()))
         else:
             settings = {"files.exclude": OrderedDict(sorted(self.dir_exclude_dict.items()))}
-        with open("settings.json", 'w') as f:
+        with open(path, 'w') as f:
             json.dump(settings, f, indent=4)
 
     def dump(self):

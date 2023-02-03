@@ -5,7 +5,6 @@ import os
 import sys
 import time
 
-from common.FileType import FileType
 from common.OutDirAnalyzer import OutDirAnalyzer
 from common.file_parser.d_pre_tmp_Parser import d_pre_tmp_Parser
 from common.file_parser.o_cmd_Parser import o_cmd_Parser
@@ -35,7 +34,12 @@ class KernelOutDirAnalyzer(OutDirAnalyzer):
         # parse tmp files
         n_processed = 0
         code_files_db = []
-        pool = multiprocessing.Pool()
+        if multiprocessing.cpu_count() > 16:
+            pool_max = 16
+        else:
+            pool_max = multiprocessing.cpu_count()
+
+        pool = multiprocessing.Pool(pool_max)
         total = len(cmd_files) + len(dt_tmp_files)
         try:
             for compdb_chunk in pool.imap_unordered(self.o_cmd_parser, cmd_files,
