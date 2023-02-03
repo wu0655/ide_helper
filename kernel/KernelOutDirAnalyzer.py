@@ -5,6 +5,7 @@ import os
 import sys
 import time
 
+from common.FileType import ParseResultFile
 from common.OutDirAnalyzer import OutDirAnalyzer
 from common.file_parser.d_pre_tmp_Parser import d_pre_tmp_Parser
 from common.file_parser.o_cmd_Parser import o_cmd_Parser
@@ -16,6 +17,8 @@ def print_progress_bar(progress):
 
 
 class KernelOutDirAnalyzer(OutDirAnalyzer):
+    gcc_path = ""
+
     def init(self):
         # walk dir to find tmp files
         cmd_files = []
@@ -62,6 +65,9 @@ class KernelOutDirAnalyzer(OutDirAnalyzer):
         self.merge_set(code_files_db)
         self.scan_auto_gen_h()
 
+        # try to get gcc, it should be very fast
+        self.parse_gcc(cmd_files)
+
     def o_cmd_parser(self, filepath):
         parser = o_cmd_Parser(self.blt_dir, self.code_dir, filepath)
         parser.parse()
@@ -72,10 +78,27 @@ class KernelOutDirAnalyzer(OutDirAnalyzer):
         parser.parse()
         return parser.out()
 
+    def parse_gcc(self, files):
+        for fn in files:
+            # fn = "/data/work/nxp/wr_atf/tda4_kernel/out/block/.blk-pm.o.cmd"
+            with open(fn, 'r') as f:
+                line = f.readline().strip()
+                tmp = line.split(":=")
+                if len(tmp) >= 2:
+                    path = tmp[1].strip().split(" ")[0].strip()
+                    if path.endswith("gcc"):
+                        self.gcc_path = path
+                        print("gcc is found at ", path)
+                        break
+
     def output(self):
-        self.flush_to_file(sorted(self.out_set), self.out_name)
-        self.flush_to_file(sorted(self.other_set), "other_set.txt")
-        self.flush_to_file(sorted(self.wildcard_set), "wildcard_set.txt")
+        super(KernelOutDirAnalyzer, self).output()
+        if len(self.gcc_path) > 0:
+            gcc_file = os.path.join(self.shell_dir, ParseResultFile.GccPath)
+            fn = open(gcc_file, 'w')
+            fn.write(self.gcc_path)
+            fn.close()
+            print("output file ", gcc_file)
 
 
 if __name__ == "__main__":

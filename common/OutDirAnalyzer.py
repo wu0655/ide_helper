@@ -2,11 +2,11 @@
 import os
 import sys
 
-from common.FileType import FileType
+from common.FileType import FileType, ParseResultFile
 
 
 class OutDirAnalyzer(object):
-    out_name = "filelist.txt"
+    shell_dir = '.'
     out_set = set()
     other_set = set()
     wildcard_set = set()
@@ -16,7 +16,7 @@ class OutDirAnalyzer(object):
 
     def __init__(self, path, name):
         if len(name) > 0:
-            self.out_name = name
+            self.shell_dir = name
         self.blt_dir = os.path.realpath(path)
         self.code_dir = os.path.realpath(path + os.sep + "source")
 
@@ -53,11 +53,15 @@ class OutDirAnalyzer(object):
 
     @staticmethod
     def flush_to_file(in_set, name):
-        fn = open(name, 'w')
-        for x in in_set:
-            fn.write(x + '\n')
-        fn.close()
+        if len(in_set) > 0:
+            fn = open(name, 'w')
+            for x in in_set:
+                fn.write(x + '\n')
+            fn.close()
+            print("output file ", name)
 
     def output(self):
-        pass
+        self.flush_to_file(sorted(self.out_set), os.path.join(self.shell_dir, ParseResultFile.Code))
+        self.flush_to_file(sorted(self.other_set), os.path.join(self.shell_dir, ParseResultFile.Other))
+        self.flush_to_file(sorted(self.wildcard_set), os.path.join(self.shell_dir, ParseResultFile.Wildcard))
 

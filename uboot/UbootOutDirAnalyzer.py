@@ -27,11 +27,6 @@ class UbootOutDirAnalyzer(OutDirAnalyzer):
         self.merge_set(code_files_db)
         self.scan_auto_gen_h()
 
-    def output(self):
-        self.flush_to_file(sorted(self.out_set), self.out_name)
-        self.flush_to_file(sorted(self.other_set), "other_set.txt")
-        self.flush_to_file(sorted(self.wildcard_set), "wildcard_set.txt")
-
 
 if __name__ == "__main__":
     print('input=' + str(sys.argv))

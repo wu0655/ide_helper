@@ -9,7 +9,7 @@ from common.file_parser.atf_o_d_Parser import atf_o_d_Parser
 
 
 class AtfOutDirAnalyzer(object):
-    out_name = "filelist.txt"
+    shell_dir = '.'
     out_set = set()
     other_set = set()
     wildcard_set = set()
@@ -19,7 +19,7 @@ class AtfOutDirAnalyzer(object):
 
     def __init__(self, blt, code, name):
         if len(name) > 0:
-            self.out_name = name
+            self.shell_dir = name
         self.blt_dir = blt
         self.code_dir = code
 
@@ -77,9 +77,10 @@ class AtfOutDirAnalyzer(object):
         fn.close()
 
     def output(self):
-        self.flush_to_file(sorted(self.out_set), self.out_name)
-        self.flush_to_file(sorted(self.other_set), "other_set.txt")
-        self.flush_to_file(sorted(self.wildcard_set), "wildcard_set.txt")
+        self.flush_to_file(sorted(self.out_set), os.path.join(self.shell_dir, 'filelist.txt'))
+        self.flush_to_file(sorted(self.other_set), os.path.join(self.shell_dir, 'other_set.txt'))
+        self.flush_to_file(sorted(self.wildcard_set), os.path.join(self.shell_dir, "wildcard_set.txt"))
+
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-#./test_do_all.sh 
+#./test_exmaple.sh
 ./ln2cp.sh ln_set.sh 
 rm -rf ~/work/vs_work/atf
 source mkdir_set.sh 
