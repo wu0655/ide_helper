@@ -6,12 +6,12 @@
             "type": "shell",
             "command": "${workspaceRoot}/.ide_helper/kernel/gen_vscode_workspace.sh",
             "args": [
-                "/data/work/nxp/wr_atf/tda4_kernel/out"
+                "${workspaceRoot}/out"
             ],
             "problemMatcher": []
         },
         {
-            "label": "backup workspace",
+            "label": "update vscode template",
             "type": "shell",
             "command": "cp -fv ${workspaceRoot}/.vscode/*.json ${workspaceRoot}/.ide_helper/kernel/vscode_template/",
             "problemMatcher": []

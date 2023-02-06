@@ -82,36 +82,17 @@ class AtfOutDirAnalyzer(object):
         self.flush_to_file(sorted(self.wildcard_set), os.path.join(self.shell_dir, "wildcard_set.txt"))
 
 
-
 if __name__ == "__main__":
     print('input=' + str(sys.argv))
-    # print('len=', len(sys.argv))
+    if len(sys.argv) <= 3:
+        exit(0)
 
-    if not os.path.exists(sys.argv[1]):
-        print("input parameter error")
-        sys.exit()
-    else:
-        test_blt_path = os.path.realpath(sys.argv[1])
-
-    if not os.path.exists(sys.argv[1]):
-        print("input parameter error")
-        sys.exit()
-    else:
-        test_blt_path = os.path.realpath(sys.argv[1])
-
-    if not os.path.exists(sys.argv[2]):
-        print("input parameter error")
-        sys.exit()
-    else:
-        test_code_path = os.path.realpath(sys.argv[2])
-
-    if len(sys.argv) > 3:
-        test_name = sys.argv[3]
-    else:
-        test_name = ""
+    _blt_dir = os.path.realpath(sys.argv[1])
+    _src_dir = os.path.realpath(sys.argv[2])
+    shell_dir = sys.argv[3]
 
     begin = time.time()
-    obj = AtfOutDirAnalyzer(test_blt_path, test_code_path, test_name)
+    obj = AtfOutDirAnalyzer(_blt_dir, _src_dir, shell_dir)
     obj.init()
     obj.output()
     end = time.time()

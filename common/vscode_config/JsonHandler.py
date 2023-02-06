@@ -17,8 +17,9 @@ class JsonHandler(object):
     def do_handle(self):
         path = os.path.join(self.code_dir, '.vscode', self.target_json_file)
         if not os.path.isfile(path):
-            path = os.path.join('./vscode_template', self.target_json_file)
+            path = os.path.join(self.shell_dir, './vscode_template', self.target_json_file)
 
+        print(path)
         if os.path.exists(path):
             with open(path, "r") as jsonFile:
                 self.json_content = json.load(jsonFile)

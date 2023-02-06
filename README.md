@@ -6,6 +6,7 @@
   - create workspace for vscode
 - support kernel, u-boot, arm-trusted-firmware
 - tested on ubuntu18.04 with python3.9, bash
+- [xx](##arm-trusted-firmware)
 
 ## vim/source insight --use filelist.txt directly
 - git clone https://github.com/wu0655/ide_helper.git
@@ -41,7 +42,7 @@
   - edit env
 - edit .vscode/*.json as needed
 
-## 1.3. arm-trusted-firmware
+## arm-trusted-firmware
 - cd atf
 - run do_all.sh, task test_do_all as example on commandline
 ### 1.3.1. vim/source insight

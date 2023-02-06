@@ -13,4 +13,4 @@ __script_dir=$(
 
 source ${__script_dir}/cleanup.sh
 
-PYTHONPATH=${__script_dir}/.. python3 ${__script_dir}/KernelOutDirAnalyzer.py $1 ${__script_dir}
+PYTHONPATH=${__script_dir}/.. python3 ${__script_dir}/UbootOutDirAnalyzer.py $1 ${__script_dir}

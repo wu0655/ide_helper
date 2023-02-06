@@ -1,15 +1,19 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Generate compile_commands.json",
-            "type": "process",
-            "command": "python",
+            "label": "update workspace config",
+            "type": "shell",
+            "command": "${workspaceRoot}/.ide_helper/kernel/gen_vscode_workspace.sh",
             "args": [
-                "${workspaceRoot}/.vscode/generate_compdb.py"
+                "${workspaceRoot}/out"
             ],
+            "problemMatcher": []
+        },
+        {
+            "label": "update vscode template",
+            "type": "shell",
+            "command": "cp -fv ${workspaceRoot}/.vscode/*.json ${workspaceRoot}/.ide_helper/kernel/vscode_template/",
             "problemMatcher": []
         }
     ]

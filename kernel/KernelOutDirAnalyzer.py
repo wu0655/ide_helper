@@ -103,21 +103,15 @@ class KernelOutDirAnalyzer(OutDirAnalyzer):
 
 if __name__ == "__main__":
     print('input=' + str(sys.argv))
-    # print('len=', len(sys.argv))
+    if len(sys.argv) <= 2:
+        exit(0)
 
-    if not os.path.exists(sys.argv[1]):
-        print("input parameter error")
-        sys.exit()
-    else:
-        test_path = os.path.realpath(sys.argv[1])
-
-    if len(sys.argv) > 2:
-        name = sys.argv[2]
-    else:
-        name = ""
+    _blt_dir = os.path.realpath(sys.argv[1])
+    _src_dir = os.path.realpath(_blt_dir + os.sep + "source")
+    shell_dir = sys.argv[2]
 
     begin = time.time()
-    obj = KernelOutDirAnalyzer(test_path, name)
+    obj = KernelOutDirAnalyzer(_blt_dir, shell_dir)
     obj.init()
     obj.output()
     end = time.time()
