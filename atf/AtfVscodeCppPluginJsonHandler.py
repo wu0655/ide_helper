@@ -24,7 +24,7 @@ class AtfVscodeCppPluginJsonHandler(JsonHandler):
             self.json_content['configurations'][0]['defines'] = self.define_list
             ret = True
         if len(self.proj_name) > 0:
-            self.json_content['env']['myProject'] = self.proj_name
+            self.json_content['env']['myPlat'] = self.proj_name
             ret = True
         return ret
 

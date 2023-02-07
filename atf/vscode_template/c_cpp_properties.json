@@ -5,7 +5,7 @@
             "${workspaceFolder}/include"
         ],
         "myCompilerPath": "/data/work/nxp/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-gcc",
-        "myProject": "batman"
+        "myPlat": "batman"
     },
     "configurations": [
         {
@@ -20,7 +20,7 @@
                 ]
             },
             "forcedInclude": [
-                "${workspaceFolder}/plat/nxp/s32/s32g/s32g2/${myProject}/include/platform_def.h"
+                "${workspaceFolder}/plat/nxp/s32/s32g/s32g2/${myPlat}/include/platform_def.h"
             ],
             "includePath": [
                 "${workspaceFolder}/**"
