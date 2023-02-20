@@ -8,6 +8,8 @@ from common.vscode_config.JsonHandler import JsonHandler
 
 
 class SettingsJsonHandler(JsonHandler):
+    flag_add_makefile_to_workspace = True
+
     target_json_file = VsCodeJsonConfig.Setting
 
     code_file_set = set()
@@ -26,7 +28,24 @@ class SettingsJsonHandler(JsonHandler):
                     self.handle_one_src_file(path)
                     self.code_file_set.add(path)
         self.scan_dir(self.code_dir)
+        self.add_makefile_to_workspace() # must called before self.exclude_file
         self.exclude_file()
+
+    @staticmethod
+    def is_mk_file(path):
+        if path.endswith(".mk") or os.path.basename(path) == "Makefile" or os.path.basename(path) == "Kconfig":
+            return True
+        else:
+            return False
+
+    def add_makefile_to_workspace(self):
+        if not self.flag_add_makefile_to_workspace:
+            return
+        for path in self.code_dir_set:
+            for name in os.listdir(path):
+                fn = os.path.join(path, name)
+                if self.is_mk_file(fn):
+                    self.code_file_set.add(fn)
 
     def exclude_file(self):
         for d in self.code_dir_set:
